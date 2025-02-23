@@ -2,7 +2,7 @@
 
 ###### This project is brought to you by 3 APSU students and a dream. To create Generative AI GUI System to assist video game developers in generating detailed game mechanics, story ideas, characters, and world-building aspects.
 
-This will allow the developer to enter in some details to the system to generate ideas for them create visually. 
+This will allow the developer to enter in some details to the system to generate ideas for them to create visually. 
 
 ###### For example: 
 
