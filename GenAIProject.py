@@ -110,3 +110,49 @@ def generate_content(self, user_id, ai_model_id, genre):
         "character": {"id": char_id, "name": char_name, "role": char_role, "trait": char_trait},
         "environment": {"id": env_id, "description": env_desc}
     }
+def main():
+    # Database config
+    db_config = {
+        "server": "COLEHOME",
+        "database": "GenAIProject",
+        "username": "name",
+        "password": "your_password"
+    }
+
+    ai = AIGenerator(db_config)
+    user_id = 1  # Hardcoded for now; assume user_id 1 exists
+    ai_model_id = 1  # Hardcoded; assume ai_model_id 1 exists
+
+    while True:
+        print("\nAI Game Dev Tool")
+        print("1. View existing content by genre")
+        print("2. Generate new content")
+        print("3. Quit")
+        choice = input("Enter your choice (1-3): ")
+
+        if choice == "1":
+            genre = input("Enter genre (fantasy, sci-fi, horror): ").lower()
+            content = ai.get_content_by_genre(genre)
+            if content:
+                print(f"Content ID: {content['content_id']}")
+                print(f"Storyline: {content['storyline']}")
+            else:
+                print(f"No content found for genre '{genre}'.")
+
+        elif choice == "2":
+            genre = input("Enter genre (fantasy, sci-fi, horror): ").lower()
+            result = ai.generate_content(user_id, ai_model_id, genre)
+            print(f"\nGenerated Content (ID: {result['content_id']}):")
+            print(f"Storyline: {result['storyline']}")
+            print(f"Character (ID: {result['character']['id']}): Name: {result['character']['name']}, Role: {result['character']['role']}, Trait: {result['character']['trait']}")
+            print(f"Environment (ID: {result['environment']['id']}): {result['environment']['description']}")
+
+        elif choice == "3":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice, try again.")
+
+if __name__ == "__main__":
+    main()
